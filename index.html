@@ -93,7 +93,26 @@
     }
   </style>
 </head>
+<script>
+const baslangic = new Date("2024-06-25T00:00:00");
 
+function sayaciGuncelle() {
+  const simdi = new Date();
+  let fark = simdi - baslangic;
+
+  const saniye = Math.floor(fark / 1000);
+  const gun = Math.floor(saniye / 86400);
+  const saat = Math.floor((saniye % 86400) / 3600);
+  const dakika = Math.floor((saniye % 3600) / 60);
+  const saniyeKalan = saniye % 60;
+
+  document.getElementById("sayac").innerHTML =
+    `💕 seninle ${gun} gün, ${saat} saat, ${dakika} dakika, ${saniyeKalan} saniyedir birlikteyiz.`;
+}
+
+sayaciGuncelle();
+setInterval(sayaciGuncelle, 1000);
+</script>
 <body>
 
   <div class="card">
