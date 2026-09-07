@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tugkan gulec'e 💗</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffd6e7, #fff0f6);
+      overflow: hidden;
+      color: #7a304f;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 600px;
+      padding: 50px 30px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 30px;
+      box-shadow: 0 15px 40px rgba(180, 70, 110, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .heart {
+      font-size: 70px;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin: 15px 0;
+    }
+
+    .message {
+      font-size: 21px;
+      line-height: 1.6;
+      margin: 25px 0;
+    }
+
+    .date {
+      font-size: 16px;
+      opacity: 0.8;
+      margin-bottom: 25px;
+    }
+
+    .counter {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.7;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 25px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.7;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="heart">💗</div>
+
+    <h1>tugkan</h1>
+
+    <div class="message">
+     seni cok seviyorum <br>
+     iyi ki hayatimdasin ❤️
+    </div>
+
+    <div class="date">
+     25 haziran 2024'ten beri..
+    </div>
+
+    <div class="counter" id="counter"></div>
+  </div>
+
+  <script>
+    const startDate = new Date("2024-06-25T00:00:00");
+
+    function updateCounter() {
+      const now = new Date();
+      const difference = now - startDate;
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+      );
+      const minutes = Math.floor(
+        (difference / (1000 * 60)) % 60
+      );
+      const seconds = Math.floor(
+        (difference / 1000) % 60
+      );
+
+      document.getElementById("counter").innerHTML =
+        `${days} gündür birlikteyiz 💕<br>
+         ${hours} saat ${minutes} dakika ${seconds} saniye`;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.innerHTML = "♡";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration =
+        (4 + Math.random() * 4) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(createHeart, 700);
+  </script>
+
+</body>
+</html>
